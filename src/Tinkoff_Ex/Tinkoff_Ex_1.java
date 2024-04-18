@@ -1,20 +1,25 @@
 package Tinkoff_Ex;
 
+import MemoryMeasureTraining.MemoryMeasure;
+
 import java.util.Scanner;
 
 public class Tinkoff_Ex_1 {
 
-    public static void Tinkoff_Ex_1_realization() {
+    public static void main(String[] args) {
         //тестовые данные для ввода
         //fjvndcode
         //fjvndcode123kbm
         //fjvndcode123kbmfgbmcode576345329fkvjbdfrcjde1fvdcode58763
 
+        MemoryMeasure.memoryMeasureKilobytes();
         Scanner scanner = new Scanner(System.in);
         StringBuilder strBuilder = new StringBuilder(scanner.nextLine());
         replacePassword(strBuilder, "???");
         System.out.println(strBuilder);
+        MemoryMeasure.memoryMeasureKilobytes();
     }
+
     public static void replacePassword(StringBuilder line, String replaceText) {
 
         int start, end, index = 0;
