@@ -3,28 +3,34 @@ package GreedAlgorithm;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Point<E extends Number> {
-    private E x;
-    private E y;
+public class Point<Double> {
+    private Double x;
+    private Double y;
 
-    public Point(E x, E y) {
+
+    public Point(Double x, Double y) {
         this.x = x;
         this.y = y;
     }
 
-    public E getX() {
+    public Point(Point<Double> a) {
+        this.x = a.x;
+        this.y = a.y;
+    }
+
+    public Double getX() {
         return x;
     }
 
-    public void setX(E x) {
+    public void setX(Double x) {
         this.x = x;
     }
 
-    public E getY() {
+    public Double getY() {
         return y;
     }
 
-    public void setY(E y) {
+    public void setY(Double y) {
         this.y = y;
     }
 
@@ -36,10 +42,10 @@ public class Point<E extends Number> {
                 '}';
     }
 
-    public Point<E> setPath(Point<E> point, LinkedList<Point<E>> listOfPoints) {
+    public Point<Double> setPath(Point<Double> point, LinkedList<Point<Double>> listOfPoints) {
 
-        Iterator<Point<E>> iterator = listOfPoints.iterator();
-        Point<E> perfectDistance = listOfPoints.get(1);
+        Iterator<Point<Double>> iterator = listOfPoints.iterator();
+        Point<Double> perfectDistance = listOfPoints.get(0);
 
        while (iterator.hasNext()) {
            if (setDistance(point, iterator.next()) < setDistance(point, perfectDistance)) {
@@ -49,11 +55,9 @@ public class Point<E extends Number> {
         return perfectDistance;
     }
 
-    public Point<E> setDistance(Point<E> a, Point<E> b) {
-
-
-        E x_ = a.x - b.x;
-        double sqrt = Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow((a.y - b.y), 2));
-        return sqrt;
+    public double setDistance(Point<Double> a, Point<Double> b) {
+        double x_ = a.x - b.x;
+        double y_ =a.y - b.y;
+        return Math.sqrt(Math.pow(x_, 2) + Math.pow((y_), 2));
     }
 }
