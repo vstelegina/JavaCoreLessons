@@ -1,36 +1,40 @@
 package GreedAlgorithm;
 
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.List;
 
-public class Point<Double> {
-    private Double x;
-    private Double y;
+public class Point {
+    private double x;
+    private double y;
+    private double perfectDistance;
 
+    public double getPerfectDistance() {
+        return perfectDistance;
+    }
 
-    public Point(Double x, Double y) {
+    public Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public Point(Point<Double> a) {
+    public Point(Point a) {
         this.x = a.x;
         this.y = a.y;
     }
 
-    public Double getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(Double x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public Double getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(Double y) {
+    public void setY(double y) {
         this.y = y;
     }
 
@@ -42,20 +46,22 @@ public class Point<Double> {
                 '}';
     }
 
-    public Point<Double> setPath(Point<Double> point, LinkedList<Point<Double>> listOfPoints) {
+    public Point setPath(Point point, List<Point> listOfPoints) {
 
-        Iterator<Point<Double>> iterator = listOfPoints.iterator();
-        Point<Double> perfectDistance = listOfPoints.get(0);
+        Iterator<Point> iterator = listOfPoints.iterator();
+        Point distance = listOfPoints.get(0);
+
 
        while (iterator.hasNext()) {
-           if (setDistance(point, iterator.next()) < setDistance(point, perfectDistance)) {
-                perfectDistance = iterator.next();
+           if (setDistance(point, iterator.next()) < setDistance(point, distance)) {
+                distance = iterator.next();
            }
        }
-        return perfectDistance;
+       perfectDistance = setDistance(point,distance);
+        return distance;
     }
 
-    public double setDistance(Point<Double> a, Point<Double> b) {
+    public double setDistance(Point a, Point b) {
         double x_ = a.x - b.x;
         double y_ =a.y - b.y;
         return Math.sqrt(Math.pow(x_, 2) + Math.pow((y_), 2));
