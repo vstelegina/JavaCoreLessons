@@ -27,7 +27,7 @@ public class Tinkoff_Ex_1 {
         // т.е., когда мы пройдем всю строку
         while (line.indexOf("code", index)>-1) {
             start = line.indexOf("code", index);
-            end = start + 4 + definePasswordLength(line, start+3);
+            end = start + 4 + definePasswordLength(line, start+4);
 
             line.replace(start, end, replaceText);
             index = end;
@@ -39,9 +39,14 @@ public class Tinkoff_Ex_1 {
 
         while (isNumber(line.charAt(indexOfStart+passwordLength))) {
             passwordLength++;
-            //это условие прописано на случай, если то, что нужно вырезать, попадет в конец строки
+            //это условие прописано на случай, если то, что нужно вырезать, попадет в конец строки.
+            //чтобы while не вызывало ошибку
+            //не сделано через do-while потому что надо будет вписывать отдельную проверку для первого символа после code
+            //от чего польза сокращения уменьшается
+            //кроме того, сравнение в if должно отнимать меньше ресурсов, чем вызов нескольких методов для
+            // отдельной проверки первого символа
             if ((indexOfStart+passwordLength) == line.length()) {
-                return 0;
+                return passwordLength;
             }
         }
         return passwordLength;
